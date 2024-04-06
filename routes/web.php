@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\MarkerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/weather', [WeatherController::class, 'getWeather'])->name('weather');
+Route::get('/markers', [MarkerController::class, 'index'])->name('markers.index');
+Route::get('/markers/create', [MarkerController::class, 'create'])->name('markers.create');
+Route::post('/markers', [MarkerController::class, 'store'])->name('markers.store');
+Route::get('/markers/{id}/edit', [MarkerController::class, 'edit'])->name('markers.edit');
+Route::put('/markers/{id}', [MarkerController::class, 'update'])->name('markers.update');
+Route::delete('/markers/{id}', [MarkerController::class, 'destroy'])->name('markers.destroy');
 
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
