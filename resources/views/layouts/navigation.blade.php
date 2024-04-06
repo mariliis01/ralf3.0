@@ -15,15 +15,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('weather')" :active="request()->routeIs('weather')">
-                        {{ __('Weather') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
-                        {{ __('Chirps') }}
-                    </x-nav-link>
                 </div>
             </div>
-            
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
