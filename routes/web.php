@@ -25,18 +25,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('weather', [WeatherController::class, 'getWeather'])->name('weather');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/markers', [MarkerController::class, 'index'])->name('markers.index');
-Route::get('/markers/create', [MarkerController::class, 'create'])->name('markers.create');
-Route::post('/markers', [MarkerController::class, 'store'])->name('markers.store');
-Route::get('/markers/{id}/edit', [MarkerController::class, 'edit'])->name('markers.edit');
-Route::put('/markers/{id}', [MarkerController::class, 'update'])->name('markers.update');
-Route::delete('/markers/{id}', [MarkerController::class, 'destroy'])->name('markers.destroy');
+Route::get('/googlemaps/maps', [MarkerController::class, 'index'])->name('googlemaps.maps');
+Route::get('/googlemaps/create', [MarkerController::class, 'create'])->name('googlemaps.create');
+Route::post('/googlemaps', [MarkerController::class, 'store'])->name('googlemaps.store');
+Route::get('/googlemaps/{id}/edit', [MarkerController::class, 'edit'])->name('googlemaps.edit');
+Route::put('/googlemaps/{id}', [MarkerController::class, 'update'])->name('googlemaps.update');
+Route::delete('/googlemaps/{id}', [MarkerController::class, 'destroy'])->name('googlemaps.destroy');
 
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])

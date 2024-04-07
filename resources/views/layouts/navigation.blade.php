@@ -15,6 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                     <x-nav-link :href="route('weather')" :active="request()->routeIs('weather')">
+                        {{ __('Weather') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
+                        {{ __('Blog') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('googlemaps.maps')" :active="request()->routeIs('googlemaps.maps')">
+                        {{ __('Markers') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -69,6 +79,15 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('weather')" :active="request()->routeIs('weather')">
+                {{ __('Weather') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
+                {{ __('Blog') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('googlemaps.maps')" :active="request()->routeIs('googlemaps.maps')">
+                {{ __('Markers') }}
             </x-responsive-nav-link>
         </div>
 
