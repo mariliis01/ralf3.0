@@ -14,9 +14,10 @@ class WeatherController extends Controller
         
         // Create a new Guzzle client instance
         $client = new Client();
+        $cityName = 'Kuressaare';
 
         // API endpoint URL with your desired location and units (e.g., London, Metric units)
-        $apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid={$apiKey}";
+        $apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid={$apiKey}";
 
         try {
             // Make a GET request to the OpenWeather API

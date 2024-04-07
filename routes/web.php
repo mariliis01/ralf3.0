@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +44,13 @@ Route::delete('/googlemaps/{id}', [MarkerController::class, 'destroy'])->name('g
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+
+Route::get('/cart', [ProductController::class, 'cart'])->name('cart');
+Route::post('/update-cart/{id}',[ProductController::class, 'updateCart'])->name('update.cart');
+Route::get('/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove.from.cart');
+
 
 require __DIR__ . '/auth.php';
