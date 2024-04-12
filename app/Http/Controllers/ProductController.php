@@ -15,7 +15,11 @@ class ProductController extends Controller
 
     public function addToCart($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
+        if (!$product) {
+            abort(404);
+        }
+
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
@@ -30,6 +34,7 @@ class ProductController extends Controller
         }
 
         session()->put('cart', $cart);
+
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
     public function cart()
