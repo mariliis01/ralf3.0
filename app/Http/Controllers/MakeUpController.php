@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MakeUp;
 use Illuminate\Http\Request;
 
+
 class MakeUpController extends Controller
 {
     /**
