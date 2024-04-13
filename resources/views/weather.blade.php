@@ -16,6 +16,16 @@
                         <p>Description: {{ $weatherData['weather'][0]['description'] }}</p>
                         <p>Temperature: {{ $weatherData['main']['temp'] }} &#8451;</p>
                         <p>Wind speed: {{ $weatherData['wind']['speed'] }} </p>
+                        <p>Visibility: {{ $weatherData['visibility'] / 1000 }} km</p>
+                    <p>Cloudiness: {{ $weatherData['clouds']['all'] }}%</p>
+                        @if(isset($weatherData['rain']['1h']))
+                    <p>Rain (Last 1 hr): {{ $weatherData['rain']['1h'] }} mm</p>
+                        @endif
+                        @if(isset($weatherData['snow']['1h']))
+                    <p>Snow (Last 1 hr): {{ $weatherData['snow']['1h'] }} mm</p>
+                        @endif
+                    <p>Sunrise: {{ date('H:i', $weatherData['sys']['sunrise']) }}</p>
+                    <p>Sunset: {{ date('H:i', $weatherData['sys']['sunset']) }}</p>
 
                         <!-- Additional weather data can be displayed as per the API response -->
                 </div>
