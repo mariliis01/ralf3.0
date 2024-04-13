@@ -61,4 +61,5 @@ Route::post('/checkout', [OrderController::class, 'handleCheckout'])->name('chec
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.show');
 Route::post('/handle-checkout', [OrderController::class, 'handleCheckout'])->name('handle.checkout');
 
+
 require __DIR__ . '/auth.php';

@@ -12,7 +12,19 @@ class MakeUpController extends Controller
      */
     public function index()
     {
-        //
+        $apiData = MakeUp::all();
+        if ($apiData) {
+            $responseData = [
+            'title' => $apiData->title,
+            'image' => $apiData->image,
+            'description' => $apiData->description,
+            'price' => $apiData->price,
+            'brand' => $apiData->brand,
+            ];
+            return response()->json($responseData);
+        } else {
+            return response()->json(['error' => 'No products found!'], 404);
+        }
     }
 
     /**
