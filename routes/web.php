@@ -45,12 +45,18 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
+Route::resource('/products', ProductController::class);
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+//Route::get('/products', [ProductController::class, 'products.index']);
 Route::get('/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 
 Route::get('/cart', [ProductController::class, 'cart'])->name('cart');
 Route::post('/update-cart/{id}',[ProductController::class, 'updateCart'])->name('update.cart');
 Route::get('/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove.from.cart');
+
+
 
 
 require __DIR__ . '/auth.php';

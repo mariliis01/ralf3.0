@@ -9,5 +9,5 @@
         
     </div>
 @endforeach
- <a href="http://127.0.0.1:8000/cart">Go to Cart</a>
+ <a href="{{ route('cart') }}">To Cart</a>
 </x-app-layout>

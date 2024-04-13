@@ -24,7 +24,9 @@
                     <x-nav-link :href="route('googlemaps.maps')" :active="request()->routeIs('googlemaps.maps')">
                         {{ __('Markers') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                        {{ __('E-shop') }}
+                    </x-nav-link>
 
                 </div>
             </div>
@@ -89,6 +91,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('googlemaps.maps')" :active="request()->routeIs('googlemaps.maps')">
                 {{ __('Markers') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                {{ __('E-shop') }}
             </x-responsive-nav-link>
         </div>
 

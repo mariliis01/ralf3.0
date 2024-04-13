@@ -22,4 +22,6 @@
 @else
     <p>Your cart is empty!</p>
 @endif
+
+<a href="{{ route('products.index') }}">Back to Products</a>
 </x-app-layout>
