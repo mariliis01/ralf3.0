@@ -24,4 +24,9 @@
 @endif
 
 <a href="{{ route('products.index') }}">Back to Products</a>
+
+<form action="{{ route('checkout.show') }}" method="GET">
+    <button type="submit">Proceed to Checkout</button>
+</form>
+
 </x-app-layout>
