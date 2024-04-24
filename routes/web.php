@@ -69,4 +69,7 @@ Route::get(
             'Liis' => 'https://hajusrakendus.ta22alber.itmajakas.ee/tools',
             default => 'https://ralf.ta22sink.itmajakas.ee/api/makeup',
         };
+    });
+   
+
 require __DIR__ . '/auth.php';

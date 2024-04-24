@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Cache;
 
 Route::get('/makeup', [MakeUpController::class, 'index']);
 
-Route::get('makeup', function (Request $request) {
+Route::get('/makeup', function (Request $request) {
 
         if ($limit = request('limit')) {
                 return Cache::remember('my-request' . $limit, now()->addHour(), fn () => MakeUp::paginate($limit));
