@@ -9,24 +9,17 @@ use Illuminate\Http\Request;
 class MakeUpController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.'
      */
-    public function index()
+
+       public function index()
     {
-        $apiData = MakeUp::all();
-        if ($apiData) {
-            $responseData = [
-            'title' => $apiData->title,
-            'image' => $apiData->image,
-            'description' => $apiData->description,
-            'price' => $apiData->price,
-            'brand' => $apiData->brand,
-            ];
-            return response()->json($responseData);
-        } else {
-            return response()->json(['error' => 'No products found!'], 404);
-        }
+        $responseData = MakeUp::select ('title', 'image', 'description', 'price', 'brand')->get();
+        return response()->json($responseData);
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
