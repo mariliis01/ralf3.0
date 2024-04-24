@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MakeUpController;
+use App\Http\Controllers\Api\MakeUpController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +20,4 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
-Route::get('/api/makeup', [MakeUpController::class, 'index']);
+Route::get('/makeup', [MakeUpController::class, 'index']);
