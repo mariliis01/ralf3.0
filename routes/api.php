@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\MakeUpController;
+use App\Models\MakeUp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/makeup', [MakeUpController::class, 'index']);
+
+Route::get('makeup', function (Request $request) {
+
+        if ($limit = request('limit')) {
+                return Cache::remember('my-request' . $limit, now()->addHour(), fn () => MakeUp::paginate($limit));
+        }
+        return MakeUp::all();
+});

@@ -61,5 +61,12 @@ Route::post('/checkout', [OrderController::class, 'handleCheckout'])->name('chec
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.show');
 Route::post('/handle-checkout', [OrderController::class, 'handleCheckout'])->name('handle.checkout');
 
-
+Route::get(
+    'show-api',
+    function () {
+        $requestUrl = match (request('name')) {
+            'Ralf' => 'https://hajus.ta19heinsoo.itmajakas.ee/api/movies',
+            'Liis' => 'https://hajusrakendus.ta22alber.itmajakas.ee/tools',
+            default => 'https://ralf.ta22sink.itmajakas.ee/api/makeup',
+        };
 require __DIR__ . '/auth.php';
