@@ -27,7 +27,9 @@
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('E-shop') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="https://ralf.ta22sink.itmajakas.ee/api/makeup">
+                        {{ __('Api') }}
+                    </x-nav-link>
                 </div>
             </div>
 
