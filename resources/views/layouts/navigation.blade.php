@@ -98,6 +98,9 @@
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('E-shop') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="https://ralf.ta22sink.itmajakas.ee/api/makeup">
+                {{ __('Api') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
