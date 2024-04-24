@@ -7,6 +7,7 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,7 @@ Route::get(
             'Liis' => 'https://hajusrakendus.ta22alber.itmajakas.ee/tools',
             default => 'https://ralf.ta22sink.itmajakas.ee/api/makeup',
         };
+        $response = Http::get('https://hajus.ta19heinsoo.itmajakas.ee/api/movies');
     });
    
 
