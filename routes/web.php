@@ -7,6 +7,7 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
 
 /*
@@ -62,16 +63,5 @@ Route::post('/checkout', [OrderController::class, 'handleCheckout'])->name('chec
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.show');
 Route::post('/handle-checkout', [OrderController::class, 'handleCheckout'])->name('handle.checkout');
 
-Route::get(
-    'show-api',
-    function () {
-        $requestUrl = match (request('name')) {
-            'Ralf' => 'https://hajus.ta19heinsoo.itmajakas.ee/api/movies',
-            'Liis' => 'https://hajusrakendus.ta22alber.itmajakas.ee/tools',
-            default => 'https://ralf.ta22sink.itmajakas.ee/api/makeup',
-        };
-        $response = Http::get('https://hajus.ta19heinsoo.itmajakas.ee/api/movies');
-    });
-   
 
 require __DIR__ . '/auth.php';
