@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 
 class WeatherController extends Controller
 {
@@ -31,6 +32,13 @@ class WeatherController extends Controller
         } catch (\Exception $e) {
             // Handle any errors that occur during the API request
             return view('api_error', ['error' => $e->getMessage()]);
+        }
+        if (Cache::has('weatherData')) {
+            $weatherData = Cache::get('weatherData');
+        } else {
+        
+            $weatherData = fetchWeatherData(); 
+            Cache::put('weatherData', $weatherData, now()->addMinutes(30)); 
         }
     }
 }
