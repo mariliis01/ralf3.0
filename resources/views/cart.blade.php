@@ -31,5 +31,8 @@
 <form action="{{ route('checkout.show') }}" method="GET">
     <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700" type="submit">Proceed to Checkout</button>
 </form>
+<div>
+    <h3>Total Sum of Products: ${{ number_format($totalSum, 2) }}</h3>
+</div>
 </div>
 </x-app-layout>
