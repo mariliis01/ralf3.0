@@ -7,6 +7,7 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CommentController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -47,6 +48,8 @@ Route::delete('/googlemaps/{id}', [MarkerController::class, 'destroy'])->name('g
 Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::resource('/products', ProductController::class);
 Route::get('/products', [ProductController::class, 'index']);
