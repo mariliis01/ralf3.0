@@ -27,7 +27,6 @@
                     <p>Sunrise: {{ date('H:i', $weatherData['sys']['sunrise']) }}</p>
                     <p>Sunset: {{ date('H:i', $weatherData['sys']['sunset']) }}</p>
 
-                        <!-- Additional weather data can be displayed as per the API response -->
                 </div>
             </div>
         </div>

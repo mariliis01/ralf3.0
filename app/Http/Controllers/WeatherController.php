@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 
@@ -10,35 +9,28 @@ class WeatherController extends Controller
 {
     public function getWeather()
     {
-        // Replace 'YOUR_API_KEY' with your OpenWeather API key
-        $apiKey = config('services.weather.key');
+        $cityName = 'Kuressaare';  
+        $cacheKey = 'weather_data';  
+
         
-        // Create a new Guzzle client instance
-        $client = new Client();
-        $cityName = 'Kuressaare';
-
-        // API endpoint URL with your desired location and units (e.g., London, Metric units)
-        $apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid={$apiKey}";
-
-        try {
-            // Make a GET request to the OpenWeather API
-            $response = $client->get($apiUrl);
-
-            // Get the response body as an array
-            $data = json_decode($response->getBody(), true);
-
-            // Handle the retrieved weather data as needed (e.g., pass it to a view)
-            return view('weather', ['weatherData' => $data]);
-        } catch (\Exception $e) {
-            // Handle any errors that occur during the API request
-            return view('api_error', ['error' => $e->getMessage()]);
-        }
-        if (Cache::has('weatherData')) {
-            $weatherData = Cache::get('weatherData');
+        if (Cache::has($cacheKey)) {
+            $weatherData = Cache::get($cacheKey);
         } else {
+            
+            $apiKey = config('services.weather.key');
+            $apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=$cityName&units=metric&appid={$apiKey}";
+            $client = new Client();
+
+            try {
+                $response = $client->get($apiUrl);
+                $weatherData = json_decode($response->getBody(), true);
         
-            $weatherData = fetchWeatherData(); 
-            Cache::put('weatherData', $weatherData, now()->addMinutes(30)); 
+                Cache::put($cacheKey, $weatherData, now()->addMinutes(15));  
+            } catch (\Exception $e) {
+                
+                return view('api_error', ['error' => $e->getMessage()]);
+            }
         }
+        return view('weather', ['weatherData' => $weatherData]);
     }
 }
