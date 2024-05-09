@@ -6,8 +6,9 @@ use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CheckoutController;
+
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -62,9 +63,11 @@ Route::get('/cart', [ProductController::class, 'cart'])->name('cart');
 Route::post('/update-cart/{id}',[ProductController::class, 'updateCart'])->name('update.cart');
 Route::get('/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove.from.cart');
 
-Route::post('/checkout', [OrderController::class, 'handleCheckout'])->name('checkout');
-Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.show');
-Route::post('/handle-checkout', [OrderController::class, 'handleCheckout'])->name('handle.checkout');
-
+Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->group(function () {
+    Route::get('/', [CheckoutController::class, 'index'])->name('index');
+    Route::post('/sessions', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/success', [CheckoutController::class, 'success'])->name('success');
+    Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('cancel');
+});
 
 require __DIR__ . '/auth.php';

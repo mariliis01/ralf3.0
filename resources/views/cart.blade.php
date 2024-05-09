@@ -23,15 +23,17 @@
             <strong>Total: ${{ number_format($total, 2) }}</strong> <!-- Display total -->
         </div>
     </div>
+    <div class="m-2">
+    <form action="{{ route('checkout.checkout') }}" method="POST">
+        @csrf
+        <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700" type="submit">Proceed to Checkout</button>
+    </form>
+</div>
 @else
     <p>Your cart is empty!</p>
 @endif
 <div class="m-4">
     <a class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" href="{{ route('products.index') }}">Back to Products</a>
 </div>
-<div class="m-2">
-    <form action="{{ route('checkout.show') }}" method="GET">
-        <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700" type="submit">Proceed to Checkout</button>
-    </form>
-</div>
+
 </x-app-layout>
