@@ -8,7 +8,7 @@ use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\MakeUpController;
+use App\Http\Controllers\Api\MakeUpController;
 use App\Models\Api;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
@@ -60,6 +60,11 @@ Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->name('com
 Route::resource('/products', ProductController::class);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+//Route::resource('/records', MakeUpController::class);
+//Route::get('/records', [MakeUpController::class, 'records']);
+Route::get('/records', [MakeUpController::class, 'records'])->name('products.records');
+Route::get('/movies', [MakeUpController::class, 'movies'])->name('products.movies');
 
 //Route::get('/products', [ProductController::class, 'products.index']);
 Route::get('/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');

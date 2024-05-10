@@ -27,8 +27,11 @@
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('E-shop') }}
                     </x-nav-link>
-                    <x-nav-link href="https://ralf.ta22sink.itmajakas.ee/api/makeup">
-                        {{ __('Api') }}
+                    <x-nav-link :href="route('products.records')" :active="request()->routeIs('products.records')">
+                        {{ __('Records') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('products.movies')" :active="request()->routeIs('products.movies')">
+                        {{ __('Movies') }}
                     </x-nav-link>
 
                 </div>
@@ -98,8 +101,11 @@
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('E-shop') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="https://ralf.ta22sink.itmajakas.ee/api/makeup">
-                {{ __('Api') }}
+            <x-responsive-nav-link :href="route('products.records')" :active="request()->routeIs('products.records')">
+                {{ __('Records') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('products.movies')" :active="request()->routeIs('products.movies')">
+                {{ __('Movies') }}
             </x-responsive-nav-link>
         </div>
 

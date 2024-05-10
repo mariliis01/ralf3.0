@@ -6,6 +6,7 @@ use App\Models\MakeUp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Http;
 
 class MakeUpController extends Controller
 {
@@ -74,13 +75,13 @@ class MakeUpController extends Controller
     {
 
         $responseData = Http::get('https://hajusrakendus.ta22maarma.itmajakas.ee/api/records')->json();
-        return view('records.records', ['products' => $responseData]);
+        return view('products.records', ['products' => $responseData]);
     }
     public function movies()
     {
 
         $responseData = Http::get('https://hajus.ta19heinsoo.itmajakas.ee/api/movies');
         $movies = $responseData->json()['data'];
-        return view('movies.movies', compact('movies'));
+        return view('products.movies', compact('movies'));
     }
 }
