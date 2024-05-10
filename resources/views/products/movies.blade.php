@@ -13,6 +13,8 @@
             <th scope="col" class="px-6 py-3">Movie</th>
             <th scope="col" class="px-6 py-3">Image</th>
             <th scope="col" class="px-6 py-3">Description</th>
+            <th scope="col" class="px-6 py-3">Movie rating</th>
+            <th scope="col" class="px-6 py-3">Ranking</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +28,12 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ $movie['description'] }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $movie['movie_rating'] }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $movie['rank'] }}
                 </td>
             </tr>
         @endforeach
