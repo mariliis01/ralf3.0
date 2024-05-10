@@ -68,10 +68,10 @@
                                             <span class="text-gray-600">{{ $comment->user->name }}:</span> {{ $comment->comment }}
                                         </div>
                                 <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete</button>
-                                </form>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                    </form>
                                     @endforeach
                                 </div>
                             @endif
