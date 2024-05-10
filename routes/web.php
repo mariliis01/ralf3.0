@@ -8,9 +8,11 @@ use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\MakeUpController;
+use App\Models\Api;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,9 @@ Route::resource('chirps', ChirpController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+//Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::delete('/comment/{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
+
 
 Route::resource('/products', ProductController::class);
 Route::get('/products', [ProductController::class, 'index']);
@@ -69,5 +73,21 @@ Route::middleware(['auth', 'verified'])->prefix('checkout')->name('checkout.')->
     Route::get('/success', [CheckoutController::class, 'success'])->name('success');
     Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('cancel');
 });
+
+
+Route::get(
+    '/show-api',
+    function () {
+        return match (request('name')) {
+            'Ralf' => Cache::remember('movies', now()->addHour(), fn () =>
+            Http::get('https://hajus.ta19heinsoo.itmajakas.ee/api/movies')->json()),
+            'Liis' => Cache::remember('tools', now()->addHour(), fn () =>
+            Http::get('https://hajusrakendus.ta22alber.itmajakas.ee/tools')->json()),
+            default => Cache::remember('makeup', now()->addHour(), fn () =>
+            Http::get('https://ralf.ta22sink.itmajakas.ee/api/makeup')->json()),
+            'Karel' => Cache::remember('records', now()->addHour(), fn () =>
+            Http::get('https://hajusrakendus.ta22maarma.itmajakas.ee/api/records')->json())
+        };
+    });
 
 require __DIR__ . '/auth.php';

@@ -67,13 +67,11 @@
                                             <!-- Display comment content -->
                                             <span class="text-gray-600">{{ $comment->user->name }}:</span> {{ $comment->comment }}
                                         </div>
-                                         <form method="POST" action="{{ route('comments.destroy', $comment) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button :href="route('comments.destroy', $chirp)" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                {{ __('Delete') }}
-                                            </button>
-                                        </form>
+                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                                </form>
                                     @endforeach
                                 </div>
                             @endif
@@ -86,6 +84,7 @@
                                 <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 active:bg-indigo-700 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 disabled:opacity-25 transition">{{ __('Add Comment') }}</button>
                             </form>
                                 </div>
+
                             </div>
                         @endforeach
                     </div>

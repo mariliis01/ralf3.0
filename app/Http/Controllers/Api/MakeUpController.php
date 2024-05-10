@@ -69,4 +69,18 @@ class MakeUpController extends Controller
     {
         //
     }
+
+    public function records()
+    {
+
+        $responseData = Http::get('https://hajusrakendus.ta22maarma.itmajakas.ee/api/records')->json();
+        return view('records.records', ['products' => $responseData]);
+    }
+    public function movies()
+    {
+
+        $responseData = Http::get('https://hajus.ta19heinsoo.itmajakas.ee/api/movies');
+        $movies = $responseData->json()['data'];
+        return view('movies.movies', compact('movies'));
+    }
 }
